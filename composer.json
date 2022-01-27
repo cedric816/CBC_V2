@@ -74,6 +74,13 @@
         "symfony/polyfill-php72": "*"
     },
     "scripts": {
+        "prepare": [
+            "php bin/console doctrine:database:drop --if-exists -f",
+            "php bin/console doctrine:database:create",
+            "php bin/console doctrine:schema:update -f",
+            "php bin/console doctrine:fixtures:load -n",
+            "php bin/console cache:clear"
+        ],
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
             "assets:install %PUBLIC_DIR%": "symfony-cmd"
@@ -95,6 +102,7 @@
         }
     },
     "require-dev": {
+        "doctrine/doctrine-fixtures-bundle": "^3.4",
         "symfony/debug-bundle": "5.4.*",
         "symfony/maker-bundle": "^1.0",
         "symfony/stopwatch": "5.4.*",
