@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Company;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -25,6 +26,16 @@ class UserFixtures extends Fixture
         $user->setLastname('Test');
         //role by default is ROLE_USER so is ok
         $manager->persist($user);
+
+        $company1 = new Company();
+        $company1->setName('ma première entreprise');
+        $company1->setUser($user);
+        $manager->persist($company1);
+
+        $company2 = new Company();
+        $company2->setName('ma deuxième entreprise');
+        $company2->setUser($user);
+        $manager->persist($company2);
 
         $manager->flush();
     }
