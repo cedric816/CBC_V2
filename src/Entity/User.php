@@ -58,6 +58,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->companies = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return strval($this->id);
+    }
+
     public function getId(): ?int
     {
         return $this->id;
