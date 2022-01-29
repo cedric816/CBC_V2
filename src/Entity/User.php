@@ -53,14 +53,21 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $companies;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Reco::class, mappedBy="sender", orphanRemoval=true)
+     */
+    private $sentRecos;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Reco::class, mappedBy="recipient", orphanRemoval=true)
+     */
+    private $receivedRecos;
+
     public function __construct()
     {
         $this->companies = new ArrayCollection();
-    }
-
-    public function __toString()
-    {
-        return strval($this->id);
+        $this->sentRecos = new ArrayCollection();
+        $this->receivedRecos = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -200,6 +207,66 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($company->getUser() === $this) {
                 $company->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Reco[]
+     */
+    public function getSentRecos(): Collection
+    {
+        return $this->sentRecos;
+    }
+
+    public function addSentReco(Reco $sentReco): self
+    {
+        if (!$this->sentRecos->contains($sentReco)) {
+            $this->sentRecos[] = $sentReco;
+            $sentReco->setSender($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSentReco(Reco $sentReco): self
+    {
+        if ($this->sentRecos->removeElement($sentReco)) {
+            // set the owning side to null (unless already changed)
+            if ($sentReco->getSender() === $this) {
+                $sentReco->setSender(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Reco[]
+     */
+    public function getReceivedRecos(): Collection
+    {
+        return $this->receivedRecos;
+    }
+
+    public function addReceivedReco(Reco $receivedReco): self
+    {
+        if (!$this->receivedRecos->contains($receivedReco)) {
+            $this->receivedRecos[] = $receivedReco;
+            $receivedReco->setRecipient($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReceivedReco(Reco $receivedReco): self
+    {
+        if ($this->receivedRecos->removeElement($receivedReco)) {
+            // set the owning side to null (unless already changed)
+            if ($receivedReco->getRecipient() === $this) {
+                $receivedReco->setRecipient(null);
             }
         }
 

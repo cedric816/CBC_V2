@@ -23,23 +23,21 @@ class Reco
     private $createdAt;
 
     /**
-     * @ORM\OneToOne(targetEntity=User::class, cascade={"persist", "remove"})
+     * @ORM\Column(type="string", length=255)
+     */
+    private $content;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="sentRecos")
      * @ORM\JoinColumn(nullable=false)
-     * @ORM\Column(unique=false)
      */
     private $sender;
 
     /**
-     * @ORM\OneToOne(targetEntity=User::class, cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="receivedRecos")
      * @ORM\JoinColumn(nullable=false)
-     * @ORM\Column(unique=false)
      */
     private $recipient;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $content;
 
     public function getId(): ?int
     {
@@ -58,12 +56,24 @@ class Reco
         return $this;
     }
 
+    public function getContent(): ?string
+    {
+        return $this->content;
+    }
+
+    public function setContent(string $content): self
+    {
+        $this->content = $content;
+
+        return $this;
+    }
+
     public function getSender(): ?User
     {
         return $this->sender;
     }
 
-    public function setSender(User $sender): self
+    public function setSender(?User $sender): self
     {
         $this->sender = $sender;
 
@@ -75,21 +85,9 @@ class Reco
         return $this->recipient;
     }
 
-    public function setRecipient(User $recipient): self
+    public function setRecipient(?User $recipient): self
     {
         $this->recipient = $recipient;
-
-        return $this;
-    }
-
-    public function getContent(): ?string
-    {
-        return $this->content;
-    }
-
-    public function setContent(string $content): self
-    {
-        $this->content = $content;
 
         return $this;
     }
