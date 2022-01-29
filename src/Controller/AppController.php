@@ -23,11 +23,8 @@ class AppController extends AbstractController
     /**
      * @Route("/recos", name="recos_read")
      */
-    public function readRecos(RecoRepository $recoRepository): Response
+    public function readRecos(): Response
     {
-        $receivedRecos = $recoRepository->finReceivedRecos($this->getUser());
-        return $this->render('app/read-recos.html.twig', [
-            'receivedRecos' => $receivedRecos
-        ]);
+        return $this->render('app/read-recos.html.twig');
     }
 }

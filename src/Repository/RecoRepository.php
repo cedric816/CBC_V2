@@ -3,7 +3,6 @@
 namespace App\Repository;
 
 use App\Entity\Reco;
-use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -20,21 +19,22 @@ class RecoRepository extends ServiceEntityRepository
         parent::__construct($registry, Reco::class);
     }
 
-    /**
-    * @return Reco[] Returns an array of Reco objects
-    */
-    
-    public function finReceivedRecos(User $user)
+    // /**
+    //  * @return Reco[] Returns an array of Reco objects
+    //  */
+    /*
+    public function findByExampleField($value)
     {
         return $this->createQueryBuilder('r')
-            ->andWhere('r.recipient = :val')
-            ->setParameter('val', $user)
-            ->orderBy('r.createdAt', 'ASC')
+            ->andWhere('r.exampleField = :val')
+            ->setParameter('val', $value)
+            ->orderBy('r.id', 'ASC')
+            ->setMaxResults(10)
             ->getQuery()
             ->getResult()
         ;
     }
-    
+    */
 
     /*
     public function findOneBySomeField($value): ?Reco
