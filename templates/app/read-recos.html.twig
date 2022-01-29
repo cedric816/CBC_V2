@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes recos{% endblock %}
+
+{% block body %}
+<div class="container">
+    Filtrer par:
+</div>
+<div class="listing">
+    {% for reco in receivedRecos %}
+    <div class="reco-card">
+        <p>Envoyée le {{reco.createdAt | date("d/m/Y")}}</p>
+        <p>par {{reco.sender.firstname}} {{reco.sender.lastname}}</p>
+        <p>{{reco.content}}</p>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
