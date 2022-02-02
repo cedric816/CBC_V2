@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Fiche membre{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1>{{membre.firstname}} {{membre.lastname}}</h1>
+</div>
+<div class="container">
+    <article>
+        <h3>Coordonnées</h3>
+        <p>📨 {{membre.email}}</p>
+        <p>📱 {{membre.phone1}}</p>
+        <p>📱 {{membre.phone2}}</p>
+        <h3>Entreprises</h3>
+        {% for company in membre.companies %}
+        <div>
+            <a href="#">🏢 {{company.name|upper}}</a>
+        </div>
+        {% endfor %}
+        <h3>Statistiques</h3>
+        <p>Recos reçues:</p>
+        <p>Recos envoyées:</p>
+    </article>
+</div>
+{% endblock %}
