@@ -7,5 +7,17 @@
     <div class="container">
         <p class="flex">App</p>
     </div>
+    <div class="listing">
+        {% for membre in membres %}
+            <div class="membre-card">
+                <p>{{membre.firstname}} {{membre.lastname}}</p>
+                <p>Entreprises:</p>
+                {% for company in membre.companies %}
+                    <p>- {{company.name}}</p>
+                {% endfor %}
+                <p>{{membre.email}}</p>
+            </div>
+        {% endfor %}
+    </div>
 </main>
 {% endblock %}
