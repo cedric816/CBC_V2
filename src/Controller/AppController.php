@@ -31,4 +31,15 @@ class AppController extends AbstractController
     {
         return $this->render('app/read-recos.html.twig');
     }
+
+    /**
+     * @Route("/membre/{id}", name="membre_read")
+     */
+    public function readMembre($id, UserRepository $userRepo): Response
+    {
+        $membre = $userRepo->find($id);
+        return $this->render('app/read-membre.html.twig', [
+            'membre' => $membre
+        ]);
+    }
 }

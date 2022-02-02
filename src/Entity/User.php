@@ -63,6 +63,21 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $receivedRecos;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $image;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $phone1;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $phone2;
+
     public function __construct()
     {
         $this->companies = new ArrayCollection();
@@ -269,6 +284,42 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $receivedReco->setRecipient(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(?string $image): self
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    public function getPhone1(): ?string
+    {
+        return $this->phone1;
+    }
+
+    public function setPhone1(string $phone1): self
+    {
+        $this->phone1 = $phone1;
+
+        return $this;
+    }
+
+    public function getPhone2(): ?string
+    {
+        return $this->phone2;
+    }
+
+    public function setPhone2(?string $phone2): self
+    {
+        $this->phone2 = $phone2;
 
         return $this;
     }

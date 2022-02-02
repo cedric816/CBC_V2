@@ -32,6 +32,8 @@ class UserFixtures extends Fixture
         $userTest->setPassword($this->passHasher->hashPassword($userTest,'password'));
         $userTest->setFirstname('User');
         $userTest->setLastname('Test');
+        $userTest->setImage('img/user.png');
+        $userTest->setPhone1($faker->phoneNumber());
         //role by default is ROLE_USER so is ok
         $manager->persist($userTest);
 
@@ -53,6 +55,8 @@ class UserFixtures extends Fixture
             $user->setPassword($this->passHasher->hashPassword($user, 'password'));
             $user->setFirstname($faker->firstName());
             $user->setLastname($faker->lastName());
+            $user->setImage('img/user.png');
+            $user->setPhone1($faker->phoneNumber());
             $manager->persist($user);
 
             $company = new Company();

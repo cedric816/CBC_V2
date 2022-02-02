@@ -5,18 +5,40 @@
 {% block body %}
 <main>
     <div class="container">
-        <p class="flex">App</p>
+        <h1>Membres du CBC</h1>
+    </div>
+    <div class="container">
+        <div class="grid">
+            <div>
+                <input type="text" name="" id="">
+                <button type="submit" class="contrast">🔎 Rechercher</button>
+            </div>
+            <div></div>
+            <div></div>
+        </div>
+
     </div>
     <div class="listing">
         {% for membre in membres %}
-            <div class="membre-card">
-                <p>{{membre.firstname}} {{membre.lastname}}</p>
-                <p>Entreprises:</p>
+        <article class="membre-card">
+            <header class="flex-column">
+                <img src={{asset(membre.image)}} alt="photo de profil">
+                <h5 class="flex">{{membre.firstname}} {{membre.lastname}}</h5>
+                <small>
+                    <p>{{membre.email}}</p>
+                </small>
+                <a href="#" role="button">RECOMMANDER</a>
+            </header>
+
+            <body>
                 {% for company in membre.companies %}
-                    <p>- {{company.name}}</p>
+                <a href="#">🏢 {{company.name|upper}}</a>
                 {% endfor %}
-                <p>{{membre.email}}</p>
-            </div>
+            </body>
+            <footer>
+                <a href={{path('membre_read', {'id':membre.id})}}>Voir la fiche complète</a>
+            </footer>
+        </article>
         {% endfor %}
     </div>
 </main>
