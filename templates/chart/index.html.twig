@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ChartController!{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1>Exemples de graphiques avec Symfony/ux-chartjs</h1>
+</div>
+<div class="container">
+    <h3>Graphique en lignes</h3>
+    <div class="grid">
+        <div>
+            {{render_chart(chartLine)}}
+        </div>
+        <div>
+            <h5>Analyse des ventes</h5>
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Pariatur fugit est at eveniet a magnam saepe
+                sed, fuga dolorem quidem soluta explicabo dignissimos, dolore voluptate animi omnis incidunt libero!
+                Voluptatem?</p>
+            <div class="grid">
+                <div>
+                    <button>Action#1</button>
+                </div>
+                <div>
+                    <button>Action#2</button>
+                </div>
+                <div></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <h3>Graphique en colonnes</h3>
+    <div class="grid">
+        <div>
+            {{render_chart(chartBar)}}
+        </div>
+        <div>
+            <h5>Analyse des ventes</h5>
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Pariatur fugit est at eveniet a magnam saepe
+                sed, fuga dolorem quidem soluta explicabo dignissimos, dolore voluptate animi omnis incidunt libero!
+                Voluptatem?</p>
+            <div class="grid">
+                <div>
+                    <button>Action#1</button>
+                </div>
+                <div>
+                    <button>Action#2</button>
+                </div>
+                <div></div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
