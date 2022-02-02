@@ -10,8 +10,8 @@
     <div class="container">
         <div class="grid">
             <div>
-                <input type="text" name="" id="">
-                <button type="submit" class="contrast">🔎 Rechercher</button>
+                <p>Recherche un membre:</p>
+                <input type="text" name="" id="inputMembre">
             </div>
             <div></div>
             <div></div>
@@ -20,7 +20,7 @@
     </div>
     <div class="listing">
         {% for membre in membres %}
-        <article class="membre-card">
+        <article class="membre-card {{membre.firstname|lower}} {{membre.lastname|lower}}">
             <header class="flex-column">
                 <img src={{asset(membre.image)}} alt="photo de profil">
                 <h5 class="flex">{{membre.firstname}} {{membre.lastname}}</h5>

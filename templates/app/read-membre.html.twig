@@ -11,7 +11,9 @@
         <h3>Coordonnées</h3>
         <p>📨 {{membre.email}}</p>
         <p>📱 {{membre.phone1}}</p>
+        {% if membre.phone2 is not null %}
         <p>📱 {{membre.phone2}}</p>
+        {% endif %}
         <h3>Entreprises</h3>
         {% for company in membre.companies %}
         <div>
@@ -19,8 +21,8 @@
         </div>
         {% endfor %}
         <h3>Statistiques</h3>
-        <p>Recos reçues:</p>
-        <p>Recos envoyées:</p>
+        <p>Recos reçues: <strong>{{membre.receivedRecos|length}}</strong></p>
+        <p>Recos envoyées: <strong>{{membre.sentRecos|length}}</strong></p>
     </article>
 </div>
 {% endblock %}
